@@ -54,6 +54,7 @@ runs:
     - name: Install Dependencies
       shell: bash
       run: |
+          npm config set '@fortawesome:registry=https://npm.fontawesome.com/''
           npm config set '//npm.fontawesome.com/:_authToken' "${{ inputs.fa-npm-token }}"
           npm config set '//registry.npmjs.org/:_authToken' "${{ inputs.npm_token }}"
           npm ci
