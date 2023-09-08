@@ -1,0 +1,89 @@
+name: Update Client CMS
+description: "Checks and updates the version of the CMS on a client website"
+
+inputs:
+  github-token:
+    description: "GitHub Token"
+    required: true
+  github-user:
+    description: "GitHub Actor"
+    required: true
+  fa-npm-token:
+    description: "Fontawesome Token"
+    required: true
+  npm_token:
+    description: "NPM Token"
+    required: true
+  composer_auth_json:
+    description: "Composer Auth"
+    required: true
+  gh_package_key:
+    description: "GH Package Key"
+    required: true
+  php_version:
+    description: "GH Package Key"
+    default: "7.4"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout Main Branch
+      uses: actions/checkout@v3
+      with:
+        ref: main
+        token: ${{ inputs.github-token }}
+        fetch-depth: 0
+
+    - name: Set GitHub Config
+      id: github
+      shell: bash
+      run: |
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "${{ inputs.github-user }}"
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.php_version }}
+
+    - name: Setup Auth
+      shell: bash
+      run: echo '${{ inputs.composer_auth_json }}' > $GITHUB_WORKSPACE/auth.json
+
+    - name: Install Dependencies
+      shell: bash
+      run: |
+          npm config set '//npm.fontawesome.com/:_authToken' "${{ inputs.fa-npm-token }}"
+          npm config set '//registry.npmjs.org/:_authToken' "${{ inputs.npm_token }}"
+          npm ci
+
+    - name: Run Composer
+      shell: bash
+      run: npm run update:cms
+
+    - name: Detect Changes
+      uses: dorny/paths-filter@v2
+      id: changes
+      with:
+        base: HEAD
+        filters: |
+          composer:
+          - '**'
+
+    - name: Commit composer update
+      shell: bash
+      if: ${{ steps.changes.outputs.composer == 'true' }}
+      run: |
+        git add composer.lock
+        git commit -m "Update composer"
+
+    - name: Push to protected branch
+      if: ${{ steps.changes.outputs.composer == 'true' }}
+      uses: CasperWA/push-protected@v2
+      with:
+        token: ${{ inputs.gh_package_key }}
+        branch: main
+        unprotect_reviews: true
+
+
