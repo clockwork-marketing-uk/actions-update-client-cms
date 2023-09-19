@@ -7,9 +7,14 @@ Checks and updates the version of the CMS on a client repository
 ```yaml
 
 - name: Update Client CMS
-    uses: clockwork-marketing-uk/actions-update-client-cms@1.0.0
+    uses: clockwork-marketing-uk/actions-update-client-cms@1.0.2
     with:
-    github-token: ${{ inputs.github-token }}
-    github-user: ${{ inputs.github-user }}
+     github-token: ${{ secrets.GITHUB_TOKEN }}
+     github-user: ${{ github.actor }}
+     fa-npm-token: ${{ secrets.FA_NPM_TOKEN }}
+     npm_token: ${{ secrets.NPM_TOKEN }}
+     composer_auth_json: ${{ secrets.COMPOSER_AUTH_JSON }}
+     gh_package_key: ${{ secrets.GH_PACKAGE_KEY }}
+     php_version: "8.1"
 
 ```
