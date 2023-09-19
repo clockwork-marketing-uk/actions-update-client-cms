@@ -7,7 +7,7 @@ Checks and updates the version of the CMS on a client repository
 ```yaml
 
 - name: Update Client CMS
-    uses: clockwork-marketing-uk/actions-update-client-cms@1.0.0
+    uses: clockwork-marketing-uk/actions-update-client-cms@1.0.2
     with:
      github-token: ${{ secrets.GITHUB_TOKEN }}
      github-user: ${{ github.actor }}
