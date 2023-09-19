@@ -46,6 +46,8 @@ runs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ inputs.php_version }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
 
     - name: Setup Auth
       shell: bash
