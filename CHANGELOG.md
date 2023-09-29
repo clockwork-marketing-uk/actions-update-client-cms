@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Logs
 
+### 1.0.5 (2023-09-29)
+
+- Add use of Composer Token
+
 ### 1.0.4 (2023-09-29)
 
 - Test use of Github Token

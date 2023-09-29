@@ -14,14 +14,14 @@ inputs:
   npm_token:
     description: "NPM Token"
     required: true
-  composer_auth_json:
-    description: "Composer Auth"
-    required: true
   gh_package_key:
     description: "GH Package Key"
     required: true
+  github-composer-token:
+    description: "Token required for private composer packages"
+    required: true
   php_version:
-    description: "GH Package Key"
+    description: "PHP Version"
     default: "7.4"
     required: true
 
@@ -51,7 +51,10 @@ runs:
 
     - name: Setup Auth
       shell: bash
-      run: composer config --global --auth github-oauth.github.com ${{ inputs.github-token }}
+      run: composer config -g github-oauth.github.com ${{ inputs.github-composer-token }}
+    # - name: Setup Auth
+    #   shell: bash
+    #   run: echo '${{ inputs.composer_auth_json }}' > $GITHUB_WORKSPACE/auth.json
 
     - name: Install Dependencies
       shell: bash
