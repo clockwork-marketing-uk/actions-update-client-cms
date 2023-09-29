@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ### 1.0.4 (2023-09-29)
 
+- Test use of Github Token
+
+### 1.0.4 (2023-09-29)
+
 - Removal of auth.json
 
 ### 1.0.3 (2023-03-13)
