@@ -49,9 +49,9 @@ runs:
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
 
-    - name: Setup Auth
-      shell: bash
-      run: echo '${{ inputs.composer_auth_json }}' > $GITHUB_WORKSPACE/auth.json
+    # - name: Setup Auth
+    #   shell: bash
+    #   run: echo '${{ inputs.composer_auth_json }}' > $GITHUB_WORKSPACE/auth.json
 
     - name: Install Dependencies
       shell: bash
