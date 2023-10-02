@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Logs
 
+### 1.0.6 (2023-10-02)
+
+- Use json in PHP install
+
 ### 1.0.5 (2023-09-29)
 
 - Add use of Composer Token
