@@ -17,8 +17,8 @@ inputs:
   gh_package_key:
     description: "GH Package Key"
     required: true
-  github-composer-token:
-    description: "Token required for private composer packages"
+  composer_auth_json:
+    description: "JSON required for composer packages"
     required: true
   php_version:
     description: "PHP Version"
@@ -47,14 +47,7 @@ runs:
       with:
         php-version: ${{ inputs.php_version }}
       env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
-
-    - name: Setup Auth
-      shell: bash
-      run: composer config -g github-oauth.github.com ${{ inputs.github-composer-token }}
-    # - name: Setup Auth
-    #   shell: bash
-    #   run: echo '${{ inputs.composer_auth_json }}' > $GITHUB_WORKSPACE/auth.json
+        COMPOSER_AUTH_JSON: ${{ inputs.composer_auth_json }}
 
     - name: Install Dependencies
       shell: bash
