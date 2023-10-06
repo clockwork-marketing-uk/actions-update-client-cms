@@ -17,13 +17,6 @@ inputs:
   gh_package_key:
     description: "GH Package Key"
     required: true
-  composer_auth_json:
-    description: "JSON required for composer packages"
-    required: true
-  php_version:
-    description: "PHP Version"
-    default: "7.4"
-    required: true
 
 runs:
   using: composite
@@ -42,13 +35,6 @@ runs:
         git config --global user.email "github-actions@github.com"
         git config --global user.name "${{ inputs.github-user }}"
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ inputs.php_version }}
-      env:
-        COMPOSER_AUTH_JSON: ${{ inputs.composer_auth_json }}
-
     - name: Install Dependencies
       shell: bash
       run: |
@@ -57,7 +43,7 @@ runs:
           npm config set '//registry.npmjs.org/:_authToken' "${{ inputs.npm_token }}"
           npm ci
 
-    - name: Run Composer
+    - name: Update CMS
       shell: bash
       run: npm run update:cms
 
