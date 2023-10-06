@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Logs
 
+### 1.1.0 (2023-10-06)
+
+Use NPM Package clockwork-cms-project
+
 ### 1.0.6 (2023-10-02)
 
 - Use json in PHP install
