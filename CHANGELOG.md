@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Logs
 
+### 1.1.1 (2023-10-06)
+
+Remove post install scripts (composer)
+
 ### 1.1.0 (2023-10-06)
 
 Use NPM Package clockwork-cms-project
