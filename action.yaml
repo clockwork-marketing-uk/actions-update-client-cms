@@ -62,6 +62,8 @@ runs:
       run: |
         git add composer.lock
         git add composer.json
+        git add package-lock.json
+        git add package.json
         git commit -m "Update CMS"
 
     - name: Push to protected branch

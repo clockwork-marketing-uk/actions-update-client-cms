@@ -1,6 +1,6 @@
 {
     "name": "actions-update-client-cms",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Checks and updates the version of the CMS on a client site",
     "author": "Clockwork Marketing <dev@clock-work.co.uk>",
     "license": "ISC"
