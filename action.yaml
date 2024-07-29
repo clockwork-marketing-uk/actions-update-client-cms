@@ -22,7 +22,7 @@ runs:
   using: composite
   steps:
     - name: Checkout Main Branch
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: main
         token: ${{ inputs.github-token }}
@@ -34,6 +34,12 @@ runs:
       run: |
         git config --global user.email "github-actions@github.com"
         git config --global user.name "${{ inputs.github-user }}"
+
+    - name: Install node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 19
+        registry-url: 'https://registry.npmjs.org'
 
     - name: Install Dependencies
       shell: bash
@@ -48,7 +54,7 @@ runs:
       run: npm run update:cms
 
     - name: Detect Changes
-      uses: dorny/paths-filter@v2
+      uses: dorny/paths-filter@v3
       id: changes
       with:
         base: HEAD
