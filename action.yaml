@@ -66,11 +66,8 @@ runs:
       shell: bash
       if: ${{ steps.changes.outputs.composer == 'true' }}
       run: |
-        git add composer.lock
-        git add composer.json
-        git add package-lock.json
-        git add package.json
-        git commit -m "Update CMS"
+        git add -A
+        git commit -m "Update CMS and Core"
 
     - name: Push to protected branch
       if: ${{ steps.changes.outputs.composer == 'true' }}
